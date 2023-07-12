@@ -39,6 +39,7 @@ public class ReflectionTest {
     }
 
     @Test
+    @DisplayName("리플렉션을 통해 필드를 받아 값을 할당한다.")
     public void privateFieldAccess() throws NoSuchFieldException, IllegalAccessException {
         Class<Student> clazz = Student.class;
         logger.debug(clazz.getName());
@@ -71,6 +72,7 @@ public class ReflectionTest {
     }
 
     @Test
+    @DisplayName("인자를 가진 생성자의 인스턴스를 생성하고 검증한다.")
     void constructor_param() throws InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<User> clazz = User.class;
         Constructor<?>[] constructors = clazz.getDeclaredConstructors();
@@ -82,6 +84,7 @@ public class ReflectionTest {
     }
 
     @Test
+    @DisplayName("@ElapsedTime 어노테이션 추가 시 메서드 수행 시간을 측정한다.")
     void time() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         Class<Student> clazz = Student.class;
 
