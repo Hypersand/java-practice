@@ -1,5 +1,7 @@
 package next.reflection;
 
+import java.awt.desktop.SystemSleepEvent;
+
 public class Student {
     private String name;
 
@@ -11,5 +13,10 @@ public class Student {
 
     public int getAge() {
         return age;
+    }
+
+    @ElapsedTime
+    public void sleep() throws InterruptedException {
+        Thread.sleep(1000);
     }
 }

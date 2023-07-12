@@ -80,4 +80,20 @@ public class ReflectionTest {
         assertThat(user.getName()).isEqualTo("홍선기");
         assertThat(user.getAge()).isEqualTo(25);
     }
+
+    @Test
+    void time() throws NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        Class<Student> clazz = Student.class;
+
+        for (Method method : clazz.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(ElapsedTime.class)) {
+                long start = System.currentTimeMillis();
+                method.invoke(clazz.getDeclaredConstructor().newInstance());
+                long end = System.currentTimeMillis();
+
+                logger.info("걸린 시간 = {}초", (end - start) / 1000.0);
+            }
+        }
+
+    }
 }
