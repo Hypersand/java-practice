@@ -1,6 +1,8 @@
 package next.reflection;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
@@ -18,6 +20,21 @@ public class ReflectionTest {
         SoftAssertions s = new SoftAssertions();
         Class<Question> clazz = Question.class;
         logger.debug("Classs Name {}", clazz.getName());
+
+        for (Constructor constructor : clazz.getConstructors()) {
+            logger.debug("Classs Constructor {}", constructor.getName());
+        }
+
+        for (Field field : clazz.getDeclaredFields()) {
+            logger.debug("Classs field {}", field.getName());
+
+        }
+
+        for (Method method : clazz.getMethods()) {
+            logger.debug("Classs method {}", method.getName());
+        }
+
+
     }
 
     @Test
