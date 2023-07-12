@@ -2,8 +2,10 @@ package next.reflection;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import next.optional.User;
 import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -66,5 +68,16 @@ public class ReflectionTest {
                 logger.debug("param type : {}", paramType);
             }
         }
+    }
+
+    @Test
+    void constructor_param() throws InvocationTargetException, InstantiationException, IllegalAccessException {
+        Class<User> clazz = User.class;
+        Constructor<?>[] constructors = clazz.getDeclaredConstructors();
+        Constructor<?> constructor = constructors[0];
+
+        User user = (User) constructor.newInstance("홍선기", 25);
+        assertThat(user.getName()).isEqualTo("홍선기");
+        assertThat(user.getAge()).isEqualTo(25);
     }
 }
