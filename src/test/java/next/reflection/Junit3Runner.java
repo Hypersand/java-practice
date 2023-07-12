@@ -4,8 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class Junit3Runner {
@@ -14,7 +12,7 @@ public class Junit3Runner {
 
     @Test
     public void runner() throws Exception {
-        Class clazz = Junit3Test.class;
+        Class<Junit3Test> clazz = Junit3Test.class;
 
         for (Method method : clazz.getDeclaredMethods()) {
             if (method.getName().startsWith("test")) {
