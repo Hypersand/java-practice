@@ -25,6 +25,7 @@ public class ReflectionTest {
             logger.debug("Classs Constructor {}", constructor.getName());
         }
 
+
         for (Field field : clazz.getDeclaredFields()) {
             logger.debug("Classs field {}", field.getName());
 
@@ -33,7 +34,24 @@ public class ReflectionTest {
         for (Method method : clazz.getMethods()) {
             logger.debug("Classs method {}", method.getName());
         }
+    }
 
+    @Test
+    public void privateFieldAccess() throws NoSuchFieldException, IllegalAccessException {
+        Class<Student> clazz = Student.class;
+        logger.debug(clazz.getName());
+
+        Field nameField = clazz.getDeclaredField("name");
+        Field ageField = clazz.getDeclaredField("age");
+        nameField.setAccessible(true);
+        ageField.setAccessible(true);
+
+        Student student = new Student();
+        nameField.set(student, "손승완");
+        ageField.set(student, 25);
+
+        assertThat(student.getName()).isEqualTo("손승완");
+        assertThat(student.getAge()).isEqualTo(25);
 
     }
 
